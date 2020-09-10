@@ -1,38 +1,223 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header_nav {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-between;
+  margin-left: 10em;
+  margin-right: 10em;
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.header {
+  background: rgba(22, 82, 240, 0.75);
+  border-bottom: 2px solid #e5e5e5;
+}
+.header_menu {
+  padding-top: 10px;
+}
+.header_menu > li {
+  list-style: none;
+  margin-left: 20px;
+}
+.header_menu > li > a {
+  text-decoration: none;
+  color: white;
+  font-family: "Montserrat";
+  font-style: Bold;
+  font-size: 22px;
+  line-height: 27px;
+  vertical-align: center;
+  text-transform: uppercase;
+}
+.header_logo {
+  font-family: "Montserrat";
+  font-style: Bold;
+  font-size: 24px;
+  line-height: 29px;
+  line-height: 100%;
+  vertical-align: center;
+  letter-spacing: 15%;
+  text-transform: uppercase;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.home_header {
+  height: 90vh;
+  background: rgba(22, 82, 240, 0.75);
+}
+
+.home_header > p {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 37px;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ffffff;
+  padding-top: 65px;
+}
+
+.trending_table {
+  background: #fff;
+  border-radius: 5px;
+  border: none !important;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  margin-top: -23rem;
+}
+.trending_table td,
+.trending_table th,
+.trending_table tr {
+  border: none;
+}
+.trending_table th {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+
+  color: #1652f0;
+}
+.trending_table > thead > .trending_title > th {
+  border: none;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #1652f0;
+  padding-bottom: 30px;
+}
+.trending_table td {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #000000;
+}
+.trending_img {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+}
+.td {
+  padding-top: 27.5px !important;
+}
+select {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 10px;
+  width: 100%;
+  align-items: center;
+  align-content: center;
+  border: none;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  align-items: center;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+select:focus {
+  outline: none;
+}
+
+.card_home {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #1652f0;
+  width: 100%;
+  margin-bottom: 3em;
+  border-radius: 8px 8px 8px 8px;
+}
+.card_title {
+  margin-top: 20px;
+  text-align: center;
+  margin-bottom: 2.5em;
+}
+.card_content {
+  padding-left: 25px;
+  padding-right: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#page-numbers {
+  list-style: none;
+  display: flex;
+}
+
+#page-numbers > li {
+  margin-right: 0.3em;
+  color: blue;
+  user-select: none;
+  cursor: pointer;
+}
+.card_currency {
+  padding: 10px;
+  margin: 20px;
+  width: 100% !important;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.card_header {
+  display: flex;
+  flex-direction: row;
+}
+.card_headername {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  word-break: keep-all;
+  align-items: center;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+
+  color: #000000;
+}
+
+.card_headersymbol {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+
+  color: #000000;
+}
+
+.card_currencyprice {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 0.15em;
+  color: #000000;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
