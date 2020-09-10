@@ -116,31 +116,33 @@ const Home = () => {
               </div>
             </div>
           </div>
-
-          {currentCoins.map((c, i) => {
-            return (
-              <div
-                className={`card card_currency col-2`}
-                key={c.id}
-                onClick={() => handleClickDetails(c.id)}
-              >
-                <div className="card_header">
-                  <img src={c.image} className="trending_img" alt={c.image} />
-                  <div>
-                    <div className="card_headername">{c.name}</div>
-                    <div className="card_headersymbol">{c.symbol}</div>
+          <div className="content_currencies row">
+            {currentCoins.map((c, i) => {
+              return (
+                <div
+                  className={`card card_currency col-2`}
+                  key={c.id}
+                  onClick={() => handleClickDetails(c.id)}
+                >
+                  <div className="card_header">
+                    <img src={c.image} className="trending_img" alt={c.image} />
+                    <div>
+                      <div className="card_headername">{c.name}</div>
+                      <div className="card_headersymbol">{c.symbol}</div>
+                    </div>
                   </div>
-                </div>
-                <div className="card_content">
-                  <div className="card_currencyprice text-center">
-                    <p>{c.current_price} u/€</p>
+                  <div className="card_content">
+                    <div className="card_currencyprice text-center">
+                      <p>{c.current_price} u/€</p>
+                    </div>
                   </div>
+                  <div className="card_footer"></div>
                 </div>
-                <div className="card_footer"></div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
           <ul id="page-numbers">{renderPageNumbers}</ul>
+
           <Modal
             show={modalShow}
             onHide={() => setModalShow(!modalShow)}

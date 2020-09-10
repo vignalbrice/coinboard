@@ -159,7 +159,9 @@ select:focus {
   flex-direction: row;
   justify-content: space-between;
 }
-
+.content_currencies {
+  width: 100%;
+}
 #page-numbers {
   list-style: none;
   display: flex;
