@@ -98,14 +98,14 @@ const Home = () => {
               ))}
             </tbody>
           </table>
-          <div className="col-4 mt-3 mb-4">
+          {/* <div className="col-4 mt-3 mb-4">
             <select>
               {currencyName.map((n, i) => (
                 <option key={i}>{n}</option>
               ))}
             </select>
-          </div>
-          <div className="col-12">
+          </div> */}
+          <div className="w-100">
             <div className="card card_home">
               <p className="card_title">All coins</p>
               <div className="card_content">
@@ -116,11 +116,11 @@ const Home = () => {
               </div>
             </div>
           </div>
-
+          <div className="container-card-currency">
           {currentCoins.map((c, i) => {
             return (
               <div
-                className={`card card_currency col-2`}
+                className={`card card_currency`}
                 key={c.id}
                 onClick={() => handleClickDetails(c.id)}
               >
@@ -131,15 +131,14 @@ const Home = () => {
                     <div className="card_headersymbol">{c.symbol}</div>
                   </div>
                 </div>
-                <div className="card_content">
-                  <div className="card_currencyprice text-center">
-                    <p>{c.current_price} u/€</p>
-                  </div>
+                <div className="card_content  text-center">
+                    <p className="card_currencyprice  mx-auto">{c.current_price} u/€</p>
                 </div>
                 <div className="card_footer"></div>
               </div>
             );
           })}
+          </div>
           <ul id="page-numbers">{renderPageNumbers}</ul>
           <Modal
             show={modalShow}
