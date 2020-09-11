@@ -62,8 +62,8 @@ const Home = () => {
         axios.get(`${CONST.API_URL}/currency_marketChart/${id}`),
       ])
       .then((response) => {
-        setCharts([response[0].data]);
-        setDetails(response[1].data);
+        setDetails([response[0].data]);
+        setCharts(response[1].data);
         setModalShow(true);
       })
       .catch((error) => {
@@ -71,13 +71,15 @@ const Home = () => {
       });
   };
   const truncateDecimal = (number) => {
-    var with2Decimals = parseFloat(number).toFixed(3);
-    return with2Decimals;
+    var with3Decimals = parseFloat(number).toFixed(3);
+    return with3Decimals;
   };
   const truncateOneDecimal = (number) => {
     var with1Decimals = parseFloat(number).toFixed(2);
     return with1Decimals;
   };
+
+  console.log(details);
   return (
     <div className="home">
       <div className="home_header">
