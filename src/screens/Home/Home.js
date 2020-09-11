@@ -57,7 +57,6 @@ const Home = ({
     return with1Decimals;
   };
 
-  console.log(details);
   return (
     <div className="home">
       <div className="home_header">
