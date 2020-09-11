@@ -72,7 +72,7 @@ const ModalDetails = ({ modalShow, setModalShow, details, charts }) => {
               />
               <div className="modal_content">
                 <p className="title">What's the {d.name} ?</p>
-                <div className="description">{d.description?.fr}</div>
+                <div className="description">{d.description?.fr.replace(/(<([^>]+)>)/gi, "")}</div>
               </div>
             </div>
           ))}
