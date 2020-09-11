@@ -7,12 +7,12 @@ export const initialState = {
   cryptoDetails: [],
 };
 
-const reducer = (state, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case CONST.SET_CURRENCIES:
       return {
         ...state,
-        trendings: action.trending,
+        trendings: action.trendings,
         currencies: action.currencies,
       };
     case CONST.SET_CHARTS_DETAILS:

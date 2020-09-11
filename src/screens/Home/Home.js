@@ -5,9 +5,12 @@ import ModalDetails from "../../components/Modal/ModalDetails";
 import Pagination from "../../components/Pagination/Pagination";
 import TrendingTable from "../../components/TrendingTable/TrendingTable";
 import CurrencyCard from "../../components/CurrencyCard/CurrencyCard";
+import HighchartsReact from "highcharts-react-official";
+import Highcharts from "highcharts";
 
 const Home = ({
   trending,
+  trendingCharts,
   allCoins,
   setCharts,
   charts,
@@ -65,6 +68,29 @@ const Home = ({
       <div className="container">
         <div className="row justify-content-center">
           <TrendingTable trending={trending} />
+          <div className="w-100 mt-5">
+            <HighchartsReact
+              options={{
+                xAxis: {
+                  categories: trendingCharts.map((tc) => tc.name),
+                },
+                chart: {
+                  type: "column",
+                },
+                series: [
+                  {
+                    type: "column",
+                    name: "Market Rank",
+                    data: trendingCharts.map((tc) => tc.market_cap_rank),
+                  },
+                ],
+                title: {
+                  text: "Top 7 of market rank currencies",
+                },
+              }}
+              highcharts={Highcharts}
+            />
+          </div>
           <div className="w-100">
             <div className="card card_home">
               <p className="card_title">All coins</p>

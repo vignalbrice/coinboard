@@ -24,9 +24,9 @@ export const getTrendsAndCurrencies = (dispatch) => {
     .get(`${CONST.API_URL}/all_currencies`)
     .then((response) => {
       dispatch({
-        type: CONST.SET_CHARTS_DETAILS,
+        type: CONST.SET_CURRENCIES,
         trendings: response.data,
-        currenices: response.data,
+        currencies: response.data,
       });
     })
     .catch((error) => {
