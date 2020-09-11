@@ -59,7 +59,7 @@ const ModalDetails = ({ modalShow, setModalShow, details, charts }) => {
                   },
                   series: [
                     {
-                      name: "Price value per $USD",
+                      name: "Price value per € Euro",
                       pointInterval: 24 * 3600 * 1000,
                       data: charts.map((c) => c),
                     },
