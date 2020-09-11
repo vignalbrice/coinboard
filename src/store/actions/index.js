@@ -10,8 +10,8 @@ export const getChartsAndDetails = (dispatch, id) => {
     .then((response) => {
       dispatch({
         type: CONST.SET_CHARTS_DETAILS,
-        charts: [response[0].data],
-        details: response[1].data,
+        details: [response[0].data],
+        charts: response[1].data,
       });
     })
     .catch((error) => {
