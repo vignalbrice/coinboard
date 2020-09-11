@@ -5,11 +5,28 @@ import About from "../screens/About/About";
 import Header from "../components/Header/Header";
 
 const RouterNavigation = () => {
+  /** Global state */
+  const [trending, setTrending] = React.useState([]);
+  const [allCoins, setAllCoins] = React.useState([]);
+  const [charts, setCharts] = React.useState([]);
+  const [details, setDetails] = React.useState([]);
+
   return (
     <Router>
       <Header />
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/">
+          <Home
+            setTrending={setTrending}
+            trending={trending}
+            setAllCoins={setAllCoins}
+            allCoins={allCoins}
+            setCharts={setCharts}
+            charts={charts}
+            setDetails={setDetails}
+            details={details}
+          />
+        </Route>
         <Route path="/about" component={About} />
       </Switch>
     </Router>
