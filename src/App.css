@@ -43,7 +43,12 @@
   height: 100%;
   background: rgba(22, 82, 240, 0.75);
 }
-
+.about_header {
+  min-height: 580px;
+  height: 100%;
+  background: rgba(22, 82, 240, 0.75);
+}
+.about_header > p,
 .home_header > p {
   font-style: normal;
   font-weight: bold;
@@ -167,27 +172,34 @@ select:focus {
 
 #page-numbers > li {
   margin-right: 0.3em;
-  color: blue;
+  color: rgba(126, 146, 215, 1);
   user-select: none;
   cursor: pointer;
+  font-weight: 600;
 }
-
-.container-card-currency{
+.container-card-currency {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
 .card_currency {
-  padding: 10px;
   margin: 20px auto;
   width: 100%;
   max-width: 250px;
   min-height: 190px;
   border-radius: 8px;
   cursor: pointer;
+  border-bottom-left-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+}
+.card_currency:hover {
+  -webkit-box-shadow: -2px 2px 9px 5px rgba(126, 146, 215, 1);
+  -moz-box-shadow: -2px 2px 9px 5px rgba(126, 146, 215, 1);
+  box-shadow: -2px 2px 9px 5px rgba(126, 146, 215, 1);
 }
 .card_header {
+  padding: 10px;
   display: flex;
   flex-direction: row;
 }
@@ -227,4 +239,176 @@ select:focus {
   color: #000000;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.card_pricechange {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.15em;
+  color: #cd3c4d;
+  margin-bottom: 50px;
+}
+
+.card_footer {
+  display: flex;
+  border-bottom-right-radius: 8px !important;
+  border-bottom-left-radius: 8px !important;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.low_24 {
+  background: #cd3c4d;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+  border-bottom-left-radius: 8px;
+}
+.high_24 {
+  background: #00a676;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+  border-bottom-right-radius: 8px;
+}
+.card-footer {
+  padding: 0 !important;
+  background-color: white !important;
+}
+
+.modal {
+  width: 100%;
+}
+.modal_content {
+  padding-left: 2em;
+}
+.rank_container {
+  padding-left: 4.6em;
+  padding-bottom: 2em;
+}
+.rank {
+  padding-left: 4.6em;
+  background: #333;
+  color: #fff;
+  width: auto;
+  border-radius: 1.5px;
+  padding: 3px;
+}
+.modal_content > .title {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.15em;
+  color: #333;
+}
+.modal_content > .description {
+  height: 30vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  overflow-wrap: break-word;
+  border: 1px solid #333;
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 1.5px;
+}
+.official_link,
+.current_price {
+  font-weight: 600;
+  color: #333;
+}
+.official_link > a {
+  text-decoration: none;
+  font-weight: 500;
+}
+.current_price > span {
+  font-weight: 500;
+  color: #333;
+}
+.about_container {
+  margin-top: -26rem;
+  padding: 15px;
+}
+
+.about_teams {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.team_member > a > img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+}
+
+.theteam,
+.thecrypto {
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 20px;
+  letter-spacing: 0.1em;
+  color: #fff;
+  margin-bottom: 50px;
+}
+
+.team_member {
+  display: flex;
+  flex-direction: column;
+}
+
+.team_member > span {
+  text-align: center;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.about_crypto {
+  margin-top: 2rem;
+  display: flex;
+}
+.thecrypto {
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 20px;
+  letter-spacing: 0.1em;
+  color: #1652f0;
+  margin-top: 80px;
+}
+
+.about_crypto > .card {
+  padding: 10px;
+  font-family: Montserrat;
+  font-size: 15px;
+  color: #333;
+  height: max-content;
+  margin-top: 10px;
+}
+.about_crypto > img {
+  margin: 10px;
+  object-fit: contain;
+  width: 300px;
+  height: 300px;
+}
+.copyright {
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  text-align: center;
+  font-weight: 600;
 }

@@ -1,24 +1,26 @@
 import React from "react";
 import axios from "axios";
 import { Modal, Button } from "react-bootstrap";
+import HighchartsReact from "highcharts-react-official";
+import Highcharts from "highcharts";
+import { CONST } from "../../store/constants/constants";
 
 const Home = () => {
   const [trending, setTrending] = React.useState([]);
-  const [currencyName, setCurrencyName] = React.useState([]);
   const [allCoins, setAllCoins] = React.useState([]);
+  const [charts, setCharts] = React.useState([]);
+  const [details, setDetails] = React.useState([]);
   const [currentPage, setCurrentPage] = React.useState(1);
-  const [selectedCard, setSelectedCard] = React.useState("");
+  const [currentNumber, setCurrentNumber] = React.useState(0);
   const [modalShow, setModalShow] = React.useState(false);
 
   const itemPerPage = 20;
 
-  const API = "https://coinboard-api.herokuapp.com/api";
   React.useEffect(() => {
     axios
-      .get(`${API}/all_currencies`)
+      .get(`${CONST.API_URL}/all_currencies`)
       .then((response) => {
         setTrending(response.data);
-        setCurrencyName(response.data.map((c) => c.name));
         setAllCoins(response.data);
       })
       .catch((error) => {
@@ -37,11 +39,17 @@ const Home = () => {
   }
   const handleClick = (e) => {
     setCurrentPage(e.target.id);
+    setCurrentNumber(e.target.id);
   };
 
   const renderPageNumbers = pageNumbers.map((number) => {
     return (
-      <li key={number} id={number} onClick={handleClick}>
+      <li
+        key={number}
+        id={number}
+        onClick={handleClick}
+        style={{ color: currentNumber === number && "blue" }}
+      >
         {number}
       </li>
     );
@@ -49,16 +57,27 @@ const Home = () => {
 
   const handleClickDetails = (id) => {
     axios
-      .get(`${API}/currency_details/${id}`)
+      .all([
+        axios.get(`${CONST.API_URL}/currency_details/${id}`),
+        axios.get(`${CONST.API_URL}/currency_marketChart/${id}`),
+      ])
       .then((response) => {
-        console.log(response.data);
+        setCharts([response[0].data]);
+        setDetails(response[1].data);
         setModalShow(true);
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
+  const truncateDecimal = (number) => {
+    var with2Decimals = parseFloat(number).toFixed(3);
+    return with2Decimals;
+  };
+  const truncateOneDecimal = (number) => {
+    var with1Decimals = parseFloat(number).toFixed(2);
+    return with1Decimals;
+  };
   return (
     <div className="home">
       <div className="home_header">
@@ -70,7 +89,7 @@ const Home = () => {
             <thead>
               <tr className="trending_title">
                 <th className="text-center" colSpan="5">
-                  7 Trending Cryto
+                  7 Trending Crypto
                 </th>
               </tr>
               <tr>
@@ -98,13 +117,6 @@ const Home = () => {
               ))}
             </tbody>
           </table>
-          {/* <div className="col-4 mt-3 mb-4">
-            <select>
-              {currencyName.map((n, i) => (
-                <option key={i}>{n}</option>
-              ))}
-            </select>
-          </div> */}
           <div className="w-100">
             <div className="card card_home">
               <p className="card_title">All coins</p>
@@ -131,12 +143,23 @@ const Home = () => {
                       <div className="card_headersymbol">{c.symbol}</div>
                     </div>
                   </div>
-                  <div className="card_content  text-center">
-                    <p className="card_currencyprice  mx-auto">
+                  <div className="card_content text-center">
+                    <p className="card_currencyprice mx-auto">
                       {c.current_price} u/€
                     </p>
                   </div>
-                  <div className="card_footer"></div>
+                  <div className="card_pricechange">
+                    <p>{truncateDecimal(c.price_change_24h)} €</p>
+                    <p>{c.price_change_percentage_24h} %</p>
+                  </div>
+                  <div className="card-footer card_footer">
+                    <div className="low_24">
+                      <p>{truncateOneDecimal(c.low_24h)} €</p>
+                    </div>
+                    <div className="high_24">
+                      <p>{truncateOneDecimal(c.high_24h)} €</p>
+                    </div>
+                  </div>
                 </div>
               );
             })}
@@ -146,17 +169,77 @@ const Home = () => {
           <Modal
             show={modalShow}
             onHide={() => setModalShow(!modalShow)}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
             centered
+            dialogClassName="modal-90vw"
           >
             <Modal.Body>
-              <h4>Centered Modal</h4>
-              <p>
-                Cras mattis consectetur purus sit amet fermentum. Cras justo
-                odio, dapibus ac facilisis in, egestas eget quam. Morbi leo
-                risus, porta ac consectetur ac, vestibulum at eros.
-              </p>
+              {details.map((d) => (
+                <div key={d.id}>
+                  <div className="card_header">
+                    <img
+                      src={d.image?.small}
+                      className="trending_img"
+                      alt={d.id}
+                    />
+                    <div>
+                      <div className="card_headername">
+                        {d.name} ({d.symbol})
+                      </div>
+                      <div className="official_link">
+                        Official link:
+                        <a href={d.links?.homepage[0]}> {d.name}</a>
+                      </div>
+                      <div className="current_price">
+                        Current Price :{" "}
+                        <span className="price">
+                          {d.market_data?.current_price.eur} €
+                        </span>
+                      </div>
+                    </div>
+                    <div className="rank_container">
+                      <p className="rank">#Rank {d.market_cap_rank}</p>
+                    </div>
+                  </div>
+                  <HighchartsReact
+                    options={{
+                      xAxis: {
+                        categories: [
+                          "Jan",
+                          "Feb",
+                          "Mar",
+                          "Apr",
+                          "May",
+                          "Jun",
+                          "Jul",
+                          "Aug",
+                          "Sep",
+                          "Oct",
+                          "Nov",
+                          "Dec",
+                        ],
+                      },
+                      yAxis: {
+                        title: charts,
+                      },
+                      series: [
+                        {
+                          name: "Price value per $USD",
+                          pointInterval: 24 * 3600 * 1000,
+                          data: charts.map((c) => c),
+                        },
+                      ],
+                      title: {
+                        text: "",
+                      },
+                    }}
+                    highcharts={Highcharts}
+                  />
+                  <div className="modal_content">
+                    <p className="title">What's the {d.name} ?</p>
+                    <div className="description">{d.description?.fr}</div>
+                  </div>
+                </div>
+              ))}
             </Modal.Body>
             <Modal.Footer>
               <Button onClick={() => setModalShow(!modalShow)}>Close</Button>
