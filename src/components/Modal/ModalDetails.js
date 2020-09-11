@@ -2,6 +2,7 @@ import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts";
+import moment from "moment";
 
 const ModalDetails = ({ modalShow, setModalShow, details, charts }) => {
   return (
@@ -39,20 +40,9 @@ const ModalDetails = ({ modalShow, setModalShow, details, charts }) => {
               <HighchartsReact
                 options={{
                   xAxis: {
-                    categories: [
-                      "Jan",
-                      "Feb",
-                      "Mar",
-                      "Apr",
-                      "May",
-                      "Jun",
-                      "Jul",
-                      "Aug",
-                      "Sep",
-                      "Oct",
-                      "Nov",
-                      "Dec",
-                    ],
+                    categories: charts.map((c, i) =>
+                      moment(c[0]).format("DD MMM YYYY")
+                    ),
                   },
                   yAxis: {
                     title: charts,
@@ -60,7 +50,6 @@ const ModalDetails = ({ modalShow, setModalShow, details, charts }) => {
                   series: [
                     {
                       name: "Price value per € Euro",
-                      pointInterval: 24 * 3600 * 1000,
                       data: charts.map((c) => c),
                     },
                   ],
@@ -72,7 +61,9 @@ const ModalDetails = ({ modalShow, setModalShow, details, charts }) => {
               />
               <div className="modal_content">
                 <p className="title">What's the {d.name} ?</p>
-                <div className="description">{d.description?.fr.replace(/(<([^>]+)>)/gi, "")}</div>
+                <div className="description">
+                  {d.description?.fr.replace(/(<([^>]+)>)/gi, "")}
+                </div>
               </div>
             </div>
           ))}
