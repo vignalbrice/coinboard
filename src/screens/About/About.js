@@ -52,7 +52,7 @@ const About = () => {
           </div>
         </div>
         <div className="footer">
-          <div className="copyright">Copyright By Naweed, Yann and Brice</div>
+          <div className="copyright">Developped By Naweed, Yann and Brice</div>
         </div>
       </div>
     </div>
